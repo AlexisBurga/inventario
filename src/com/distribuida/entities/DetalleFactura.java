@@ -1,6 +1,10 @@
-package com.distribuida.entities;
+   package com.distribuida.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -9,16 +13,19 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name = "detallefactura")
 public class DetalleFactura {
-
+	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	//Atributos
+	@Column (name ="fecha")
 	private int idDetalle_factura;
-	
 	private int idFactura;
 	private int idProducto;
+	@Column (name ="cantidad")
 	private int Cantidad;
+	@Column (name ="preciounitario")
 	private double Preciounitario;
 	public DetalleFactura(int idDetalle_factura, int idFactura, int idProducto, int cantidad, double preciounitario) {
-		;
+		
 		this.idDetalle_factura = idDetalle_factura;
 		this.idFactura = idFactura;
 		this.idProducto = idProducto;

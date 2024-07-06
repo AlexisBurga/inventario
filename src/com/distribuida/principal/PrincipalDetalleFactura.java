@@ -11,7 +11,7 @@ public class PrincipalDetalleFactura {
 
 	  
 
-		public static void main(String[] args) {
+public static void main(String[] args) {
 			
 		
 	ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContext.xml");

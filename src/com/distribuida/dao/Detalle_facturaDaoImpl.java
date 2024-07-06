@@ -2,15 +2,27 @@ package com.distribuida.dao;
 
 import java.util.List;
 
-import com.distribuida.entities.DetalleFactura;
+import javax.transaction.Transactional;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.distribuida.entities.DetalleFactura;
+@Repository
 public class Detalle_facturaDaoImpl implements Detalle_facturaDao {
 
+	@Autowired
+	private SessionFactory  sessionFactory ;
+
 	@Override
+	@Transactional
 	public List<DetalleFactura> findAll() {
 		// TODO Auto-generated method stub
-		return null;
-	}
+		   Session session = sessionFactory.getCurrentSession();
+	        return session.createQuery("from DetalleFactura", DetalleFactura.class).getResultList();
+	    }
 
 	@Override
 	public DetalleFactura findOne(int id) {
