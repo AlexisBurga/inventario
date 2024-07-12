@@ -1,51 +1,52 @@
 package com.distribuida.dao;
 
 import java.util.List;
-
 import javax.transaction.Transactional;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.distribuida.entities.Facturas;
+
 @Repository
 public class FacturasDaoImpl implements FacturasDao {
 
-	@Autowired
-	private SessionFactory  sessionFactory ;
+    @Autowired
+    private SessionFactory sessionFactory;
 
-	@Override
-	@Transactional
-	public List<Facturas> findAll() {
-		// TODO Auto-generated method stub
-		 Session session = sessionFactory.getCurrentSession();
-	        return session.createQuery("from Facturas", Facturas.class).getResultList();
-	    }
+    @Override
+    @Transactional
+    public List<Facturas> findAll() {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("from Facturas", Facturas.class).getResultList();
+    }
 
-	@Override
-	public Facturas findOne(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    @Transactional
+    public Facturas findOne(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        return session.get(Facturas.class, id);
+    }
 
-	@Override
-	public void add(Facturas facturas) {
-		// TODO Auto-generated method stub
+    @Override
+    @Transactional
+    public void add(Facturas facturas) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(facturas);
+    }
 
-	}
+    @Override
+    @Transactional
+    public void up(Facturas facturas) {
+        Session session = sessionFactory.getCurrentSession();
+        session.update(facturas);
+    }
 
-	@Override
-	public void up(Facturas facturas) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void del(int id) {
-		// TODO Auto-generated method stub
-
-	}
-
+    @Override
+    @Transactional
+    public void del(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        Facturas facturas = session.byId(Facturas.class).load(id);
+        session.delete(facturas);
+    }
 }

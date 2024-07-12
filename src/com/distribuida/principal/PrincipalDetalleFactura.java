@@ -9,20 +9,20 @@ import com.distribuida.entities.DetalleFactura;
 
 public class PrincipalDetalleFactura {
 
-	  
+    public static void main(String[] args) {
+        // Cargar el contexto de Spring
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContext.xml");
 
-public static void main(String[] args) {
-			
-		
-	ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContext.xml");
-		
-	Detalle_facturaDao DetalleFacturasDao = context.getBean("detallefacturaDaoImpl", Detalle_facturaDao.class);
+        try {
+            // Obtener el bean de Detalle_facturaDao desde el contexto de Spring
+            Detalle_facturaDao detalleFacturaDao = context.getBean("detalle_facturaDaoImpl", Detalle_facturaDao.class);
 
-	
-	List<DetalleFactura> DetalleFacturas =DetalleFacturasDao.findAll();
-	DetalleFacturasDao.findAll().forEach(item -> {System.out.println(item.toString());});
-	
-		}
-
-	}
-
+            // Obtener todas las facturas de detalle y mostrarlas
+            List<DetalleFactura> detalleFacturas = detalleFacturaDao.findAll();
+            detalleFacturas.forEach(item -> System.out.println(item.toString()));
+        } finally {
+            // Cerrar el contexto de Spring para liberar los recursos
+            context.close();
+        }
+    }
+}

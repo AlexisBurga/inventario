@@ -1,4 +1,4 @@
-   package com.distribuida.entities;
+package com.distribuida.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,61 +13,71 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name = "detallefactura")
 public class DetalleFactura {
-	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	//Atributos
-	@Column (name ="fecha")
-	private int idDetalle_factura;
-	private int idFactura;
-	private int idProducto;
-	@Column (name ="cantidad")
-	private int Cantidad;
-	@Column (name ="preciounitario")
-	private double Preciounitario;
-	public DetalleFactura(int idDetalle_factura, int idFactura, int idProducto, int cantidad, double preciounitario) {
-		
-		this.idDetalle_factura = idDetalle_factura;
-		this.idFactura = idFactura;
-		this.idProducto = idProducto;
-		Cantidad = cantidad;
-		Preciounitario = preciounitario;
-	}
-	public int getIdDetalle_factura() {
-		return idDetalle_factura;
-	}
-	public void setIdDetalle_factura(int idDetalle_factura) {
-		this.idDetalle_factura = idDetalle_factura;
-	}
-	public int getIdFactura() {
-		return idFactura;
-	}
-	public void setIdFactura(int idFactura) {
-		this.idFactura = idFactura;
-	}
-	public int getIdProducto() {
-		return idProducto;
-	}
-	public void setIdProducto(int idProducto) {
-		this.idProducto = idProducto;
-	}
-	public int getCantidad() {
-		return Cantidad;
-	}
-	public void setCantidad(int cantidad) {
-		Cantidad = cantidad;
-	}
-	public double getPreciounitario() {
-		return Preciounitario;
-	}
-	public void setPreciounitario(double preciounitario) {
-		Preciounitario = preciounitario;
-	}
-	@Override
-	public String toString() {
-		return "DetalleFactura [idDetalle_factura=" + idDetalle_factura + ", idFactura=" + idFactura + ", idProducto="
-				+ idProducto + ", Cantidad=" + Cantidad + ", Preciounitario=" + Preciounitario + "]";
-	}
-	
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_detalle_factura")
+    private int idDetalleFactura;
+    private int idFactura;
+    private int idProducto;
+
+    @Column(name = "cantidad")
+    private int cantidad;
+
+    @Column(name = "preciounitario")
+    private double precioUnitario;
+	//@JoinColumn(name = "idFacturaa")
+	//@JoinColumn(name = "idTipoPago")
+	//@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	
+    // Constructor sin argumentos
+    public DetalleFactura() {
+    }
+
+    // Getters y Setters
+    public int getIdDetalleFactura() {
+        return idDetalleFactura;
+    }
+
+    public void setIdDetalleFactura(int idDetalleFactura) {
+        this.idDetalleFactura = idDetalleFactura;
+    }
+
+    public int getIdFactura() {
+        return idFactura;
+    }
+
+    public void setIdFactura(int idFactura) {
+        this.idFactura = idFactura;
+    }
+
+    public int getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public double getPrecioUnitario() {
+        return precioUnitario;
+    }
+
+    public void setPrecioUnitario(double precioUnitario) {
+        this.precioUnitario = precioUnitario;
+    }
+
+    @Override
+    public String toString() {
+        return "DetalleFactura [idDetalleFactura=" + idDetalleFactura + ", idFactura=" + idFactura + ", idProducto=" + idProducto
+                + ", cantidad=" + cantidad + ", precioUnitario=" + precioUnitario + "]";
+    }
 }
